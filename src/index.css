@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #100D0B;
+  --color-bg-secondary: #19130F;
+  --color-accent: #FF720C;
+  --color-accent-deep: #A83F0B;
+  --color-text-primary: #F5F0E9;
+  --color-text-secondary: #A9A19A;
+  --color-text-muted: #77716B;
+  --color-border: rgba(255, 255, 255, 0.10);
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* Base styles */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent-deep) var(--color-bg-primary);
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+/* Keyboard accessibility focus rings */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent-deep);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom utility classes */
+.text-gradient-orange {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-orange {
+  box-shadow: 0 0 40px rgba(255, 114, 12, 0.2), 0 0 80px rgba(255, 114, 12, 0.08);
+}
+
+.border-subtle {
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Print Stylesheet for Executive Resume Export */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+  }
+
+  header, nav, footer, button[aria-label="Back to top"], .scroll-indicator {
+    display: none !important;
+  }
+
+  section {
+    padding: 2rem 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .text-gradient-orange {
+    -webkit-text-fill-color: #A83F0B !important;
+    color: #A83F0B !important;
+  }
+
+  div, p, span, h1, h2, h3 {
+    color: #111827 !important;
+  }
+
+  .border-white\/10 {
+    border-color: #e5e7eb !important;
+  }
+
+  .bg-\[\#19130F\], .bg-\[\#100D0B\] {
+    background-color: #f9fafb !important;
+  }
+}
